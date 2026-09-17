@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Contact</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="contact.css">
+        <link rel="icon" type="x-icon" href="mylogo.png" class=>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="profile-pic-wrap">
+            <img src="personnalite.png" alt="photo" class="profile-pic">
+        </div>
+        
+        <script src="" async defer></script>
+        <div class="header-contact">
+            <h1><strong>Contacts</strong></h1>
+            <div class="logo-wrap">
+                <img src="mylogo.png" alt="photo" class="monlogo">
+            </div>
+        </div>
+        <p><h3>Bienvenue sur ma page de contacts !</h3></p>
+        <p># Vous pouvez me contacter via les coordonnées suivantes :</p>
+        <ul>
+            <li><span>Email</span> : frikkde@gmail.com</li><br>
+            <li><span>Téléphone</span> : 96-48-97-44</li>
+        </ul>
+        <p>
+           # Ou via le formulaire de contact ci-dessous :
+        </p>
+        <form method="post" action="traitement.php">
+            <fieldset id="section">
+                <legend id="legend">Informations personnelles</legend>
+
+                <label for="name">Nom</label> :
+                <input type="text" id="name" name="name" required minlength="2" maxlength="50" placeholder="Votre nom"><br><br>
+                <span id="error-message1"></span><br><br>
+
+                <label for="firstname">Prénoms</label> :
+                <input type="text" id="firstname" name="firstname" required minlength="2" maxlength="100" placeholder="Votre prénom"><br><br>
+                <span id="error-message2"></span><br><br>
+
+                <label for="phone">Téléphone</label> :
+                <input type="tel" id="phone" name="phone" maxlength="10" placeholder="Votre numéro de téléphone"><br><br>
+                <span id="error-message3"></span><br><br>
+
+                <label for="email">Email</label> :
+                <input type="email" id="email" name="email" required maxlength="100" placeholder="nom@domaine.com"><br><br>
+                <span id="error-message4"></span><br><br>
+
+                <label for="message">Message</label> :
+                <textarea id="message" name="message" rows="5" required placeholder="Votre message"></textarea><br><br>
+                <span id="error-message5"></span><br><br>
+            </fieldset><br>
+            <input type="submit" value="Envoyer" id="envoyer"><br><br>
+        </form>
+        <div class="lien"><a href="index.html">&larr; Accueil</a></div>
+        <br>
+
+        <script>
+        
+            alert("Bienvenue sur ma page de contacts !");
+
+            const name = document.getElementById("name");
+            const firstname = document.getElementById("firstname");
+            const phone = document.getElementById("phone");
+            const email = document.getElementById("email");
+            const message = document.getElementById("message");
+            const valider = document.getElementById("envoyer");
+
+            const name_valid = /^[a-zA-Zséàèêëîïôöùûüÿ-]+(?:[ a-zA-Zséàèêëîïôöùûüÿ'-]+)*$/;
+            const firstname_valid = /^[a-zA-Zséàèêëîïôöùûüÿ-]+(?:[ a-zA-Zséàèêëîïôöùûüÿ'-]+)*$/;
+            const phone_valid = /^[0-9]{8}$/;
+            const email_valid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const message_valid = /^.{10,}$/;
+
+            const error_message1 = document.getElementById("error-message1");
+            const error_message2 = document.getElementById("error-message2");
+            const error_message3 = document.getElementById("error-message3");
+            const error_message4 = document.getElementById("error-message4");
+            const error_message5 = document.getElementById("error-message5");
+
+            function resetErrorMessages() {
+                error_message1.textContent = "";
+                error_message2.textContent = "";
+                error_message3.textContent = "";
+                error_message4.textContent = "";
+                error_message5.textContent = "";
+            }
+
+            valider.addEventListener("click", function (e) {
+                resetErrorMessages();
+                let formIsValid = true;
+
+                if (name.validity.valueMissing) {
+                    e.preventDefault();
+                    error_message1.textContent = "Veuillez entrer votre nom";
+                    error_message1.style.color = "red";
+                    error_message1.style.fontSize = "18px";
+                    error_message1.style.textDecoration = "none";
+                    formIsValid = false;
+                } else if (!name_valid.test(name.value.trim())) {
+                    e.preventDefault();
+                    error_message1.textContent = "Format du nom incorrect";
+                    error_message1.style.color = "red";
+                    error_message1.style.fontSize = "18px";
+                    error_message1.style.textDecoration = "none";
+                    formIsValid = false;
+                }
+
+                if (firstname.validity.valueMissing) {
+                    e.preventDefault();
+                    error_message2.textContent = "Veuillez entrer votre prénom";
+                    error_message2.style.color = "red";
+                    error_message2.style.fontSize = "18px";
+                    error_message2.style.textDecoration = "none";
+                    formIsValid = false;
+                } else if (!firstname_valid.test(firstname.value.trim())) {
+                    e.preventDefault();
+                    error_message2.textContent = "Format du prénom incorrect";
+                    error_message2.style.color = "red";
+                    error_message2.style.fontSize = "18px";
+                    error_message2.style.textDecoration = "none";
+                    formIsValid = false;
+                }
+
+                if (phone.value !== "" && !phone_valid.test(phone.value)) {
+                    e.preventDefault();
+                    error_message3.textContent = "Veuillez entrer un numéro de téléphone valide";
+                    error_message3.style.color = "red";
+                    error_message3.style.fontSize = "18px";
+                    error_message3.style.textDecoration = "none";
+                    formIsValid = false;
+                }
+
+                if (email.validity.valueMissing) {
+                    e.preventDefault();
+                    error_message4.textContent = "Veuillez entrer votre adresse email";
+                    error_message4.style.color = "red";
+                    error_message4.style.fontSize = "18px";
+                    error_message4.style.textDecoration = "none";
+                    formIsValid = false;
+                } else if (!email_valid.test(email.value.trim())) {
+                    e.preventDefault();
+                    error_message4.textContent = "Format de l'email incorrect";
+                    error_message4.style.color = "red";
+                    error_message4.style.fontSize = "18px";
+                    error_message4.style.textDecoration = "none";
+                    formIsValid = false;
+                }
+
+                if (message.validity.valueMissing) {
+                    e.preventDefault();
+                    error_message5.textContent = "Veuillez écrire votre message";
+                    error_message5.style.color = "red";
+                    error_message5.style.fontSize = "18px";
+                    error_message5.style.textDecoration = "none";
+                    formIsValid = false;
+                } else if (!message_valid.test(message.value.trim())) {
+                    e.preventDefault();
+                    error_message5.textContent = "Le message doit contenir au moins 10 caractères";
+                    error_message5.style.color = "red";
+                    error_message5.style.fontSize = "18px";
+                    error_message5.style.textDecoration = "none";
+                    formIsValid = false;
+                }
+
+                if (!formIsValid) {
+                    return false;
+                }
+            });
+        </script>
+    </body>
+</html>

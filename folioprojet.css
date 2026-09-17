@@ -1,0 +1,405 @@
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #050816;
+      background-image:
+        radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.18), transparent 24%),
+        linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      background-size: auto, auto, 32px 32px, 32px 32px;
+      color: #e5ebff;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.15), rgba(2, 6, 23, 0.4));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-logo-wrap {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      width: clamp(68px, 7vw, 96px);
+      height: clamp(68px, 7vw, 96px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 22px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.42);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .profile-photo-wrap {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      width: clamp(72px, 8vw, 112px);
+      height: clamp(72px, 8vw, 112px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.42);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .brand-logo,
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .brand-logo {
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.24));
+    }
+
+    body .text-slate-500,
+    body .text-slate-400,
+    body .text-slate-300,
+    body .text-slate-700,
+    body .text-slate-800,
+    body .text-slate-900,
+    body .text-slate-600 {
+      color: #dfe7ff !important;
+    }
+
+    body .bg-slate-200\/80,
+    body .bg-slate-100,
+    body .bg-white\/80,
+    body .bg-indigo-50 {
+      background: rgba(15, 23, 42, 0.78) !important;
+      border-color: rgba(148, 163, 184, 0.18) !important;
+      color: #e2e8f0 !important;
+    }
+
+    body .bg-indigo-600,
+    body .bg-gradient-to-r.from-indigo-600.to-violet-600 {
+      background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%) !important;
+    }
+
+    body #controlsPanel {
+      background: rgba(15, 23, 42, 0.76) !important;
+      border: 1px solid rgba(148, 163, 184, 0.12) !important;
+      box-shadow: 0 12px 30px rgba(2, 6, 23, 0.45) !important;
+    }
+
+    body #controlsPanel button {
+      border: 1px solid rgba(148, 163, 184, 0.12) !important;
+    }
+
+    body footer,
+    body footer .text-slate-400,
+    body footer kbd {
+      color: #a5b4cf !important;
+    }
+
+    body footer kbd {
+      background: rgba(148, 163, 184, 0.12) !important;
+      border: 1px solid rgba(148, 163, 184, 0.12) !important;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Perspective du conteneur de pile */
+    .deck-container {
+      perspective: 1200px;
+      position: relative;
+      width: 320px;
+      height: 440px;
+    }
+
+    @media (min-width: 640px) {
+      .deck-container {
+        width: 360px;
+        height: 480px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      header {
+        margin-top: 56px;
+      }
+
+      .deck-container {
+        width: 300px;
+        height: 420px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-top: 80px;
+      }
+
+      .brand-logo-wrap {
+        top: 12px;
+        left: 12px;
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+      }
+
+      .profile-photo-wrap {
+        top: 12px;
+        right: 12px;
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+      }
+
+      header {
+        margin-top: 34px;
+      }
+
+      .deck-container {
+        width: 270px;
+        height: 390px;
+      }
+
+      .card-item {
+        padding: 18px 16px;
+        border-radius: 18px;
+      }
+
+      .card-item h3 {
+        font-size: 1.4rem;
+      }
+
+      .card-item p {
+        font-size: 0.74rem;
+        line-height: 1.55;
+      }
+
+      .pulse-text {
+        letter-spacing: 0.08em;
+      }
+    }
+
+    @media (max-width: 390px) {
+      body {
+        padding: 18px 8px 14px;
+      }
+
+      .brand-logo-wrap {
+        top: 12px;
+        left: 12px;
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+      }
+
+      .profile-photo-wrap {
+        top: 12px;
+        right: 12px;
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+      }
+
+      header {
+        margin-top: 40px;
+        margin-bottom: 12px;
+      }
+
+      header .flex {
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+
+      h1 {
+        font-size: 2.15rem;
+        line-height: 1.08;
+      }
+
+      header p {
+        font-size: 0.76rem;
+      }
+
+      .deck-container {
+        width: 280px;
+        height: 380px;
+      }
+
+      .card-item {
+        padding: 18px 16px;
+        border-radius: 18px;
+      }
+
+      .card-item h3 {
+        font-size: 1.35rem;
+      }
+
+      .card-item p {
+        font-size: 0.73rem;
+        line-height: 1.5;
+      }
+
+      .tech-badge {
+        font-size: 0.56rem;
+        padding: 0.32rem 0.5rem;
+      }
+
+      #cycleHint {
+        margin-top: 12px;
+      }
+
+      #cycleHint span {
+        font-size: 0.56rem;
+        letter-spacing: 0.1em;
+      }
+
+      #controlsPanel {
+        width: min(100%, 290px);
+        gap: 0.5rem;
+        padding: 0.8rem 0.7rem;
+        margin-top: 18px;
+      }
+
+      #controlsPanel button {
+        flex: 1 1 calc(33.333% - 0.5rem);
+        min-width: 0;
+        padding: 0.72rem 0.5rem;
+        font-size: 0.68rem;
+      }
+
+      footer {
+        margin-top: 16px;
+        font-size: 0.66rem;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .brand-logo-wrap {
+        top: 10px;
+        left: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+      }
+
+      h1 {
+        font-size: 1.95rem;
+      }
+
+      .deck-container {
+        width: 255px;
+        height: 350px;
+      }
+
+      .card-item {
+        padding: 16px 14px;
+      }
+
+      .card-item h3 {
+        font-size: 1.2rem;
+      }
+
+      .card-item p {
+        font-size: 0.68rem;
+      }
+
+      #controlsPanel {
+        width: min(100%, 270px);
+      }
+    }
+
+    /* Styles individuels des cartes */
+    .card-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1a1d23;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 28px;
+      color: #e0e6ed;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.35),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+      transform-origin: center bottom;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), 
+                  opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+      will-change: transform, opacity;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-item:hover {
+      box-shadow: 
+        0 22px 45px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(99, 102, 241, 0.2);
+    }
+
+    /* Classe d'animation de sortie / rotation du cycle */
+    .card-item.cycling-out {
+      animation: cycleOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes cycleOut {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: translate3d(-140%, -20px, 50px) rotate(-22deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate3d(0, 0, -100px) rotate(0deg);
+        opacity: 0;
+      }
+    }
+
+    /* Badge glassmorphique */
+    .tech-badge {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Texte d'indication pulsant */
+    .pulse-text {
+      letter-spacing: 0.18em;
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }

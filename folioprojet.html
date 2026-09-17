@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curseur de cartes interactif</title>
+  <!-- CSS Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Icônes Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Polices Google : Inter et JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="folioprojet.css">
+  <link rel="icon" type="x-icon" href="mylogo.png" class=>
+</head>
+
+<body class="min-height-screen flex flex-col justify-between items-center py-8 px-4 text-slate-800">
+
+  <div class="brand-logo-wrap" aria-label="Logo de la marque">
+    <img src="mylogo.png" alt="Logo de la marque" class="brand-logo">
+  </div>
+
+  <div class="profile-photo-wrap" aria-label="Photo de profil">
+    <img src="personnalite.png" alt="photo" class="profile-photo">
+  </div>
+
+  <header class="w-full max-w-4xl flex flex-col items-center justify-center text-center mt-2 mb-6">
+    <!-- Étiquettes du haut -->
+    <div class="flex items-center gap-3 text-xs sm:text-sm font-semibold tracking-wider text-slate-500 uppercase mb-3">
+      <span class="bg-slate-200/80 px-2.5 py-1 rounded-md text-slate-700">HTML</span>
+      <span class="text-slate-300">•</span>
+      <span class="bg-slate-200/80 px-2.5 py-1 rounded-md text-slate-700">CSS</span>
+      <span class="text-slate-300">•</span>
+      <span class="bg-slate-200/80 px-2.5 py-1 rounded-md text-slate-700">JS</span>
+      <span class="text-slate-300">•</span>
+      <span class="bg-slate-200/80 px-2.5 py-1 rounded-md text-slate-700">PHP</span>
+    </div>
+
+    <!-- Titre -->
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 drop-shadow-sm">
+      Curseur de <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">cartes</span>
+    </h1>
+    <!-- Sous-titre -->
+    <p class="mt-2 text-sm sm:text-base text-slate-500">Mes projets et innovations</p>
+  </header>
+
+  <main class="flex flex-col items-center justify-center my-auto w-full max-w-xl">
+    
+    <!-- Conteneur extérieur de la pile de cartes -->
+    <div class="relative py-8 flex justify-center items-center w-full">
+      <div id="deckContainer" class="deck-container" aria-label="Pile de cartes interactives">
+        <!-- Cartes injectées dynamiquement via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Indication interactive -->
+    <div id="cycleHint" class="mt-4 flex items-center gap-2 cursor-pointer group" onclick="cycleNextCard()">
+      <i class="fa-solid fa-hand-pointer text-indigo-600 text-sm group-hover:translate-y-[-2px] transition-transform"></i>
+      <span class="pulse-text font-mono text-xs font-bold text-slate-500 group-hover:text-indigo-600 transition-colors uppercase">
+        Cliquez sur une carte ou touchez pour faire défiler
+      </span>
+    </div>
+
+    <!-- Panneau de commandes -->
+    <div id="controlsPanel" class="mt-8 bg-white/80 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-xl border border-slate-200/80 flex flex-wrap items-center justify-center gap-4 sm:gap-6 w-full max-w-md">
+      <!-- Bouton précédent -->
+      <button onclick="cyclePrevCard()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition-all active:scale-95">
+        <i class="fa-solid fa-arrow-left text-xs"></i> Préc.
+      </button>
+
+      <!-- Lecture automatique -->
+      <button id="autoPlayBtn" onclick="toggleAutoPlay()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-600 border border-indigo-200/60 font-semibold text-sm transition-all active:scale-95">
+        <i id="autoPlayIcon" class="fa-solid fa-play text-xs"></i>
+        <span id="autoPlayText">Lecture auto</span>
+      </button>
+
+      <!-- Bouton suivant -->
+      <button onclick="cycleNextCard()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md shadow-indigo-200 transition-all active:scale-95">
+        Suivant <i class="fa-solid fa-arrow-right text-xs"></i>
+      </button>
+    </div>
+
+    <!-- Indicateurs de progression de la pile -->
+    <div id="dotsContainer" class="flex items-center gap-2 mt-6">
+      <!-- Points générés via JavaScript -->
+    </div>
+  </main>
+
+  <footer class="mt-8 text-center text-xs text-slate-400 font-medium">
+    <div class="mb-4">
+      <a href="index.html" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-indigo-200 transition-all hover:scale-[1.02] hover:shadow-indigo-300">
+        Accueil
+      </a>
+    </div>
+    Utilisez les flèches <kbd class="px-1.5 py-0.5 bg-slate-200 text-slate-700 rounded text-[10px]">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate-200 text-slate-700 rounded text-[10px]">→</kbd> pour naviguer dans la pile
+  </footer>
+
+  <script>
+    /* Tableau des données des cartes représentant les technologies web */
+    const cardsData = [
+      {
+        id: "01",
+        title: "Projet AGRISOON",
+        badge: "Projet Web",
+        icon: "fa-bolt",
+        iconColor: "text-amber-400",
+        description: "AGRISOON est un projet innovant qui vise à révolutionner l'agriculture grâce à la technologie et aux numériques.",
+        tags: ["Frontend", "Server Actions", "Iot capteurs"],
+        projectUrl: "https://gunik2007.github.io/AgrisoonFinal/"
+      },
+      {
+        id: "02",
+        title: "Projet RIZORA",
+        badge: "Projet Web",
+        icon: "fa-brands fa-react",
+        iconColor: "text-cyan-400",
+        description: "RIZORA est un projet ambitieux qui vise à transformer le domaine de L'agriculture plus précisement la riziculture grâce à la technologie et aux numériques .",
+        tags: ["Frontend", "Serveur", "Iot capteurs"],
+        projectUrl: "ProjetRIZORA/index.html"
+      },
+      {
+        id: "03",
+        title: "Extension de Recherche",
+        badge: "Extension Web",
+        icon: "fa-brands fa-css3-alt",
+        iconColor: "text-teal-400",
+        description: "Extension de recherche pour améliorer l'expérience utilisateur sur les sites web et faciliter l'accès via le moteur de recherche de choix.",
+        tags: ["Extension", "Recherche", "Performance"],
+        projectUrl: " https://defrikk-arch.github.io/EXTENTION_DE_RECHERCHE/"
+      },
+      {
+        id: "04",
+        title: "Conexion Page",
+        badge: "Page Web",
+        icon: "fa-code",
+        iconColor: "text-blue-400",
+        description: "Une page de connexion pour permettre aux utilisateurs de se connecter à leur compte.",
+        tags: ["Frontend", "No Backend", "No Server"],
+        projectUrl: "Pagewifi.html"
+      },
+      {
+        id: "05",
+        title: "Framework Progressif",
+        badge: "Framework",
+        icon: "fa-brands fa-vuejs",
+        iconColor: "text-emerald-400",
+        description: "Un framework progressif pour construire des applications web modernes.",
+        tags: ["Reactivity", "Vite", "Composition API"],
+        projectUrl: "/Lovesite.html"
+      },
+      {
+        id: "05",
+        title: "Framework Progressif",
+        badge: "Framework",
+        icon: "fa-brands fa-vuejs",
+        iconColor: "text-emerald-400",
+        description: "Un framework progressif pour construire des applications web modernes.",
+        tags: ["Reactivity", "Vite", "Composition API"],
+        projectUrl: "/Lovesite.html"
+      }
+    ];
+
+    let currentIndex = 0;
+    let isAnimating = false;
+    let autoPlayInterval = null;
+    let autoPlayActive = false;
+
+    const deckContainer = document.getElementById('deckContainer');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    // Affiche la pile initiale des cartes
+    function renderDeck() {
+      deckContainer.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      const total = cardsData.length;
+
+      cardsData.forEach((card, index) => {
+        // Calcule l'écart relatif par rapport à la carte active en avant
+        const offset = (index - currentIndex + total) % total;
+
+        const cardEl = document.createElement('div');
+        cardEl.className = 'card-item';
+        cardEl.setAttribute('data-index', index);
+
+        // Applique les transformations 3D de la pile : effet d'éventail inspiré de la référence
+        if (offset === 0) {
+          // Carte active en premier plan
+          cardEl.style.transform = `translate3d(0px, 0px, 0px) rotate(0deg)`;
+          cardEl.style.zIndex = total;
+          cardEl.style.opacity = '1';
+          cardEl.style.pointerEvents = 'auto';
+        } else if (offset <= 4) {
+          // Cartes empilées derrière la carte active (décalées à gauche et légèrement tournées)
+          const translateX = -offset * 22; // Décalage horizontal de la pile
+          const translateY = -offset * 6;  // Décalage vertical de la pile
+          const rotate = -offset * 4.5;    // Légère rotation en éventail
+          const scale = 1 - (offset * 0.03);
+
+          cardEl.style.transform = `translate3d(${translateX}px, ${translateY}px, -${offset * 20}px) rotate(${rotate}deg) scale(${scale})`;
+          cardEl.style.zIndex = total - offset;
+          cardEl.style.opacity = (1 - offset * 0.15).toString();
+          cardEl.style.pointerEvents = 'auto';
+        } else {
+          // Cartes arrière cachées
+          cardEl.style.transform = `translate3d(-90px, -20px, -100px) rotate(-20deg) scale(0.85)`;
+          cardEl.style.zIndex = 0;
+          cardEl.style.opacity = '0';
+          cardEl.style.pointerEvents = 'none';
+        }
+
+        // Structure HTML du contenu de la carte
+        cardEl.innerHTML = `
+          <div>
+            <!-- Barre supérieure de la carte -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-sm font-bold text-slate-400 tracking-wider">${card.id}</span>
+              <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                <i class="fa-solid ${card.icon} ${card.iconColor}"></i> ${card.badge}
+              </span>
+            </div>
+
+            <!-- Titre de l'en-tête de la carte -->
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
+              ${card.title}
+            </h3>
+
+            <!-- Description de la carte -->
+            <p class="text-slate-300 text-sm leading-relaxed font-normal">
+              ${card.description}
+            </p>
+          </div>
+
+          <!-- Pied de page avec les tags et le bouton d'accès -->
+          <div class="pt-4 border-t border-slate-800">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex flex-wrap gap-2">
+                ${card.tags.map(tag => `
+                  <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-800/80 text-slate-400 border border-slate-700/50">
+                    #${tag}
+                  </span>
+                `).join('')}
+              </div>
+
+              <a
+                href="${card.projectUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-project-link
+                class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-3 py-2 text-xs font-bold text-white shadow-lg shadow-indigo-900/30 transition-all hover:scale-[1.02] hover:shadow-indigo-500/20"
+              >
+                Accéder
+              </a>
+            </div>
+          </div>
+        `;
+
+        const projectLink = cardEl.querySelector('[data-project-link]');
+        if (projectLink) {
+          projectLink.addEventListener('click', (event) => {
+            event.stopPropagation();
+          });
+        }
+
+        // Cliquer sur la carte active ou empilée déclenche le cycle suivant
+        cardEl.addEventListener('click', () => {
+          if (isAnimating) return;
+          if (offset === 0) {
+            cycleNextCard();
+          } else {
+            // Saut direct vers la carte cliquée dans la pile
+            jumpToCard(index);
+          }
+        });
+
+        deckContainer.appendChild(cardEl);
+
+        // Affiche le point d'indicateur de progression
+        const dot = document.createElement('div');
+        dot.className = `h-2 rounded-full transition-all duration-300 cursor-pointer ${
+          index === currentIndex ? 'w-8 bg-indigo-600' : 'w-2 bg-slate-300 hover:bg-slate-400'
+        }`;
+        dot.addEventListener('click', () => jumpToCard(index));
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    // Avance vers la carte suivante
+    function cycleNextCard() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const topCard = deckContainer.querySelector(`[data-index="${currentIndex}"]`);
+      if (topCard) {
+        topCard.classList.add('cycling-out');
+      }
+
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % cardsData.length;
+        renderDeck();
+        isAnimating = false;
+      }, 450);
+    }
+
+    // Revient à la carte précédente
+    function cyclePrevCard() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      currentIndex = (currentIndex - 1 + cardsData.length) % cardsData.length;
+      renderDeck();
+
+      // Déclenche une légère animation d'entrée depuis l'arrière
+      const newTopCard = deckContainer.querySelector(`[data-index="${currentIndex}"]`);
+      if (newTopCard) {
+        newTopCard.style.transform = `translate3d(-100px, -10px, 40px) rotate(-15deg)`;
+        setTimeout(() => {
+          newTopCard.style.transform = `translate3d(0px, 0px, 0px) rotate(0deg)`;
+          isAnimating = false;
+        }, 50);
+      } else {
+        isAnimating = false;
+      }
+    }
+
+    // Saut direct vers un index précis
+    function jumpToCard(targetIndex) {
+      if (isAnimating || targetIndex === currentIndex) return;
+      isAnimating = true;
+      currentIndex = targetIndex;
+      renderDeck();
+      setTimeout(() => { isAnimating = false; }, 400);
+    }
+
+    // Active ou désactive la lecture automatique
+    function toggleAutoPlay() {
+      const btn = document.getElementById('autoPlayBtn');
+      const icon = document.getElementById('autoPlayIcon');
+      const text = document.getElementById('autoPlayText');
+
+      if (autoPlayActive) {
+        clearInterval(autoPlayInterval);
+        autoPlayActive = false;
+        icon.className = 'fa-solid fa-play text-xs';
+        text.textContent = 'Lecture auto';
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('bg-indigo-50', 'text-indigo-600');
+      } else {
+        autoPlayActive = true;
+        cycleNextCard();
+        autoPlayInterval = setInterval(cycleNextCard, 3000);
+        icon.className = 'fa-solid fa-pause text-xs';
+        text.textContent = 'Pause';
+        btn.classList.remove('bg-indigo-50', 'text-indigo-600');
+        btn.classList.add('bg-indigo-600', 'text-white');
+      }
+    }
+
+    // Navigation clavier avec les flèches
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        cycleNextCard();
+      } else if (e.key === 'ArrowLeft') {
+        cyclePrevCard();
+      }
+    });
+
+    // Support du glissement tactile pour mobile
+    let startX = 0;
+    let startY = 0;
+
+    deckContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    deckContainer.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].clientX - startX;
+      const diffY = e.changedTouches[0].clientY - startY;
+
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+        if (diffX < 0) {
+          cycleNextCard(); // Glissement vers la gauche -> suivant
+        } else {
+          cyclePrevCard(); // Glissement vers la droite -> précédent
+        }
+      }
+    }, { passive: true });
+
+    // Rendu initial
+    window.onload = () => {
+      renderDeck();
+    };
+  </script>
+</body>
+</html>

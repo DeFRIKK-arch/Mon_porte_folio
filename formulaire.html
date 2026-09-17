@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - Design Néon</title>
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        linear-gradient(180deg, rgba(5, 17, 15, 1) 0%, rgba(3, 12, 11, 1) 100%),
+        radial-gradient(circle at center, rgba(0, 230, 153, 0.08), transparent 38%);
+      background-color: #071410;
+      background-image:
+        radial-gradient(rgba(0, 230, 153, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(5, 15, 14, 1), rgba(6, 18, 16, 1));
+      background-size: 16px 16px, 100% 100%;
+    }
+
+    /* Carte Principale */
+    .login-card {
+      display: flex;
+      width: 820px;
+      max-width: 94%;
+      height: 500px;
+      background: rgba(8, 19, 17, 0.9);
+      border-radius: 18px;
+      border: 2px solid rgba(0, 230, 153, 0.3);
+      box-shadow: 0 0 0 1px rgba(0, 230, 153, 0.08), 0 18px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 230, 153, 0.1);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Section Gauche (Illustration) */
+    .left-section {
+      flex: 1;
+      background:
+        radial-gradient(circle at center, rgba(0, 230, 153, 0.15), transparent 30%),
+        linear-gradient(180deg, rgba(8, 23, 21, 0.98), rgba(5, 12, 11, 1) 35%, rgba(4, 11, 10, 1) 100%);
+      border-right: 1px solid rgba(0, 230, 153, 0.16);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 20px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 230, 153, 0.04) 100%);
+      pointer-events: none;
+    }
+
+    /* Lampe */
+    .lamp-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin-top: -12px;
+      z-index: 1;
+    }
+
+    .lamp-cord {
+      width: 4px;
+      height: 58px;
+      background: linear-gradient(180deg, #00e699, #10342d);
+      box-shadow: 0 0 10px rgba(0, 230, 153, 0.25);
+      opacity: 0.95;
+    }
+
+    .lamp-shade {
+      width: 150px;
+      height: 44px;
+      background: rgba(18, 35, 31, 0.95);
+      border: 2px solid #00e699;
+      border-bottom: none;
+      border-radius: 110px 110px 0 0;
+      box-shadow: 0 0 18px rgba(0, 230, 153, 0.12);
+      position: relative;
+    }
+
+    .lamp-light {
+      width: 260px;
+      height: 36px;
+      background: linear-gradient(90deg, rgba(0, 230, 153, 0.7), rgba(0, 230, 153, 1), rgba(0, 230, 153, 0.7));
+      border-radius: 50%;
+      box-shadow: 0 0 18px rgba(0, 230, 153, 0.8), 0 0 40px rgba(0, 230, 153, 1), 0 0 100px rgba(0, 230, 153, 0.9);
+      margin-top: -4px;
+    }
+
+    .light-beam {
+      position: absolute;
+      top: 92px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 520px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(0, 230, 153, 0.22) 0%, rgba(0, 230, 153, 0.10) 28%, rgba(0, 230, 153, 0.04) 58%, transparent 78%);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      pointer-events: none;
+      filter: blur(4px);
+      opacity: 1;
+    }
+
+    /* Avatar Robot */
+    .robot-avatar {
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle at 50% 35%, rgba(5, 42, 34, 0.9), rgba(9, 16, 16, 1) 62%);
+      border: 2px solid #00e699;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 28px rgba(0, 230, 153, 0.35), inset 0 0 16px rgba(0, 230, 153, 0.05);
+      margin-top: 40px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .robot-avatar::before,
+    .robot-avatar::after {
+      content: "";
+      position: absolute;
+      top: -18px;
+      width: 8px;
+      height: 20px;
+      background: #00e699;
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(0, 230, 153, 0.8);
+    }
+
+    .robot-avatar::before {
+      left: 30px;
+    }
+
+    .robot-avatar::after {
+      right: 30px;
+    }
+
+    .robot-face {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      transform: translateY(6px);
+    }
+
+    .eyes {
+      display: flex;
+      gap: 18px;
+    }
+
+    .eye {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      background: #00e699;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00e699;
+      overflow: hidden;
+    }
+
+    .pupil {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: #031b15;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(3, 27, 21, 0.7);
+      transition: transform 0.18s ease-out;
+    }
+
+    .smile {
+      width: 34px;
+      height: 18px;
+      border-bottom: 4px solid #00e699;
+      border-radius: 0 0 22px 22px;
+      box-shadow: 0 0 8px rgba(0, 230, 153, 0.6);
+    }
+
+    /* Section Droite (Formulaire) */
+    .right-section {
+      flex: 1.2;
+      padding: 40px 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #ffffff;
+    }
+
+    .header h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .header h2 span {
+      color: #00e699;
+    }
+
+    .header p {
+      color: #8a9996;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    /* Champs de saisie */
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #00e699;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      left: 14px;
+      color: #00e699;
+      font-size: 15px;
+      line-height: 1;
+      display: inline-block;
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+      text-shadow: 0 0 8px rgba(0, 230, 153, 0.7);
+    }
+
+    .input-wrapper input,
+    .input-wrapper textarea {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      background: rgba(10, 18, 18, 0.6);
+      border: 1px solid rgba(0, 230, 153, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+      resize: vertical;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .input-wrapper textarea {
+      min-height: 110px;
+      padding-top: 12px;
+    }
+
+    .input-wrapper input:focus,
+    .input-wrapper textarea:focus {
+      border-color: #00e699;
+      box-shadow: 0 0 10px rgba(0, 230, 153, 0.2);
+    }
+
+    /* Bouton principal */
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #00e699;
+      border: none;
+      border-radius: 8px;
+      color: #06110e;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      box-shadow: 0 0 15px rgba(0, 230, 153, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #00cc88;
+      box-shadow: 0 0 20px rgba(0, 230, 153, 0.6);
+    }
+
+    /* Séparateur "or" */
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #556663;
+      font-size: 12px;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #1a2b28;
+    }
+
+    .divider span {
+      padding: 0 10px;
+    }
+
+    /* Connexion Sociale */
+    .social-login {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 10px;
+      background: rgba(10, 18, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .social-btn i {
+      font-size: 14px;
+      color: #00e699;
+      display: inline-block;
+      opacity: 1;
+      visibility: visible;
+      text-shadow: 0 0 8px rgba(0, 230, 153, 0.7);
+    }
+
+    .social-btn:hover {
+      background: rgba(20, 35, 33, 0.8);
+      border-color: rgba(0, 230, 153, 0.3);
+    }
+
+    /* Lien d'inscription */
+    .footer-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #667774;
+    }
+
+    .footer-text a {
+      color: #00e699;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .login-card {
+        width: 92%;
+        height: auto;
+        flex-direction: column;
+      }
+
+      .left-section {
+        min-height: 260px;
+        padding: 22px 20px 10px;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 230, 153, 0.16);
+      }
+
+      .robot-avatar {
+        width: 120px;
+        height: 120px;
+        margin-top: 18px;
+      }
+
+      .lamp-light {
+        width: 200px;
+      }
+
+      .light-beam {
+        width: 300px;
+        height: 200px;
+      }
+
+      .right-section {
+        padding: 26px 22px 30px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 16px;
+      }
+
+      .login-card {
+        width: 100%;
+        border-radius: 16px;
+      }
+
+      .left-section {
+        min-height: 220px;
+      }
+
+      .lamp-cord {
+        height: 40px;
+      }
+
+      .lamp-shade {
+        width: 110px;
+      }
+
+      .lamp-light {
+        width: 160px;
+        height: 24px;
+      }
+
+      .light-beam {
+        width: 220px;
+        height: 160px;
+      }
+
+      .robot-avatar {
+        width: 100px;
+        height: 100px;
+      }
+
+      .robot-face {
+        width: 78px;
+      }
+
+      .eye {
+        width: 12px;
+        height: 12px;
+      }
+
+      .pupil {
+        width: 5px;
+        height: 5px;
+      }
+
+      .social-login {
+        flex-direction: column;
+      }
+
+      .header h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <!-- Côté Gauche : Illumination & Avatar -->
+    <div class="left-section">
+      <div class="lamp-container">
+        <div class="lamp-cord"></div>
+        <div class="lamp-shade"></div>
+        <div class="lamp-light"></div>
+        <div class="light-beam"></div>
+      </div>
+
+      <div class="robot-avatar">
+        <div class="robot-face">
+          <div class="eyes">
+            <div class="eye"><span class="pupil"></span></div>
+            <div class="eye"><span class="pupil"></span></div>
+          </div>
+          <div class="smile"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Côté Droit : Formulaire -->
+    <div class="right-section">
+      <div class="header">
+        <h2>Welcome <span>Back.</span></h2>
+        <p>Enter your email and comment in the following fields :</p>
+      </div>
+
+      <form>
+        <div class="input-group">
+          <label>EMAIL</label>
+          <div class="input-wrapper">
+            <i class="fa-regular fa-user"></i>
+            <input type="email" placeholder="Enter your email" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>COMMENT</label>
+          <div class="input-wrapper">
+            <i class="fa-regular fa-comment"></i>
+            <textarea rows="4" placeholder="Enter your comment" required></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          SIGN IN <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    const pupils = document.querySelectorAll('.pupil');
+    const formArea = document.querySelector('.right-section');
+    const formInputs = document.querySelectorAll('input, button, .social-btn');
+    const emailInput = document.querySelector('input[type="email"]');
+    const commentInput = document.querySelector('textarea');
+    const form = document.querySelector('form');
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const commentRegex = /^(?=\s*\S)([\w\sÀ-ÿ.,!?;:'"()\-/]{10,500})$/;
+
+    function setFieldState(input, isValid) {
+      if (!input) return;
+      input.style.borderColor = isValid ? '#00e699' : '#ff6b6b';
+      input.style.boxShadow = isValid ? '0 0 10px rgba(0, 230, 153, 0.2)' : '0 0 10px rgba(255, 107, 107, 0.2)';
+    }
+
+    function validateEmail() {
+      if (!emailInput) return true;
+      const isValid = emailRegex.test(emailInput.value.trim());
+      setFieldState(emailInput, isValid);
+      return isValid;
+    }
+
+    function validateComment() {
+      if (!commentInput) return true;
+      const isValid = commentRegex.test(commentInput.value.trim());
+      setFieldState(commentInput, isValid);
+      return isValid;
+    }
+
+    if (emailInput) {
+      emailInput.addEventListener('input', validateEmail);
+      emailInput.addEventListener('blur', validateEmail);
+    }
+
+    if (commentInput) {
+      commentInput.addEventListener('input', validateComment);
+      commentInput.addEventListener('blur', validateComment);
+    }
+
+    if (form) {
+      form.addEventListener('submit', (event) => {
+        const emailValid = validateEmail();
+        const commentValid = validateComment();
+
+        if (!emailValid || !commentValid) {
+          event.preventDefault();
+        }
+      });
+    }
+
+    function movePupils(targetX, targetY) {
+      pupils.forEach((pupil) => {
+        const eye = pupil.parentElement;
+        const eyeRect = eye.getBoundingClientRect();
+        const centerX = eyeRect.left + eyeRect.width / 2;
+        const centerY = eyeRect.top + eyeRect.height / 2;
+
+        const dx = targetX - centerX;
+        const dy = targetY - centerY;
+        const angle = Math.atan2(dy, dx);
+        const maxOffset = 3.5;
+        const x = Math.cos(angle) * maxOffset;
+        const y = Math.sin(angle) * maxOffset;
+
+        pupil.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    }
+
+    function lookAtForm() {
+      const rect = formArea.getBoundingClientRect();
+      const focusTargetX = rect.left + rect.width * 0.72;
+      const focusTargetY = rect.top + rect.height * 0.38;
+      movePupils(focusTargetX, focusTargetY);
+    }
+
+    function lookAtElement(element) {
+      const rect = element.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      movePupils(centerX, centerY);
+    }
+
+    formInputs.forEach((element) => {
+      element.addEventListener('focus', () => lookAtElement(element));
+      element.addEventListener('mouseenter', () => lookAtElement(element));
+    });
+
+    document.addEventListener('pointermove', (event) => {
+      if (document.activeElement && document.activeElement.tagName !== 'BODY') {
+        lookAtElement(document.activeElement);
+        return;
+      }
+      movePupils(event.clientX, event.clientY);
+    });
+
+    document.addEventListener('focusout', () => {
+      lookAtForm();
+    });
+
+    lookAtForm();
+  </script>
+
+</body>
+</html>

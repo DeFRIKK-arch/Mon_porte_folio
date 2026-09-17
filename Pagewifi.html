@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My WiFi Network</title>
+        <meta name="description" content="Welcome to my WiFi network!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="wifi.css">
+        <link rel="icon" type="image/png" href="image/logo_rond.png">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+        <div class="wifi-container">
+
+            <h1>My WiFi Network</h1>
+            <p>Welcome to my WiFi network!</p>
+            <form method="post" action="connect.php">
+                <h2>Network Connection</h2><br>
+                <label for="identifiant">Identifiant:</label>
+                <input type="text" id="identifiant" name="identifiant" required  placeholder="Enter your identifiant"><br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required  placeholder="Enter your password"><br><br>
+
+                <input type="submit" value="Connection">
+            </form>
+            <br><br>
+            <div class="info">Avec notre réseau WiFi, vous pouvez accéder à Internet depuis n'importe quel appareil connecté.</div><br>
+            <div class="info">Vous êtes servie 24h/24.</div>
+        </div>
+    </body>
+</html>
