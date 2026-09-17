@@ -311,6 +311,46 @@
       box-shadow: 0 0 20px rgba(0, 230, 153, 0.6);
     }
 
+    .home-btn {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      padding: 10px 22px;
+      background: #00e699;
+      border: 1px solid rgba(0, 230, 153, 0.9);
+      border-radius: 999px;
+      color: #06110e;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      box-shadow: 0 0 18px rgba(0, 230, 153, 0.35);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .home-btn:hover {
+      background: #00cc88;
+      box-shadow: 0 0 22px rgba(0, 230, 153, 0.5);
+    }
+
+    @media (max-width: 900px) {
+      .home-btn {
+        left: 16px;
+        bottom: 16px;
+        padding: 9px 18px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .home-btn {
+        left: 12px;
+        bottom: 12px;
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+    }
+
     /* Séparateur "or" */
     .divider {
       display: flex;
@@ -530,6 +570,8 @@
 
     </div>
   </div>
+
+  <a href="index.html" class="home-btn">Accueil</a>
 
   <script>
     const pupils = document.querySelectorAll('.pupil');
